@@ -1,0 +1,611 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "2_Demultiplex_iCLIP",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Input Dataset Collection"
+                }
+            ],
+            "label": "Paired-end reads collection",
+            "name": "Input dataset collection",
+            "outputs": [],
+            "position": {
+                "left": 200,
+                "top": 523.125
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false, \"collection_type\": \"list:paired\"}",
+            "tool_version": null,
+            "type": "data_collection_input",
+            "uuid": "69533814-f7bb-4977-a5da-fb77e3d5fed6",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "adc4163d-c323-4836-b5ee-902c6e6cf768"
+                }
+            ]
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Barcodes Tabula"
+                }
+            ],
+            "label": "Barcodes Tabula",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 1486.765625,
+                "top": 889.546875
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "c2d32622-fa5d-4075-a8b1-fd8ede91d0f6",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "491b9823-c862-49a6-b130-09d5188cf8ed"
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": "__UNZIP_COLLECTION__",
+            "errors": null,
+            "id": 2,
+            "input_connections": {
+                "input": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Unzip Collection",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "Unzip Collection",
+            "outputs": [
+                {
+                    "name": "forward",
+                    "type": "input"
+                },
+                {
+                    "name": "reverse",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 499.078125,
+                "top": 521.03125
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActionforward": {
+                    "action_arguments": {
+                        "newtype": "fastq"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "forward"
+                },
+                "ChangeDatatypeActionreverse": {
+                    "action_arguments": {
+                        "newtype": "fastq"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "reverse"
+                },
+                "HideDatasetActionforward": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "forward"
+                },
+                "HideDatasetActionreverse": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "reverse"
+                }
+            },
+            "tool_id": "__UNZIP_COLLECTION__",
+            "tool_state": "{\"input\": {\"__class__\": \"RuntimeValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.0.0",
+            "type": "tool",
+            "uuid": "0092ad9c-8846-4503-b4b0-c8057f157566",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/1.6",
+            "errors": null,
+            "id": 3,
+            "input_connections": {
+                "input": {
+                    "id": 2,
+                    "output_name": "forward"
+                },
+                "paired_end|input2": {
+                    "id": 2,
+                    "output_name": "reverse"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Cutadapt",
+                    "name": "input"
+                },
+                {
+                    "description": "runtime parameter for tool Cutadapt",
+                    "name": "paired_end"
+                }
+            ],
+            "label": null,
+            "name": "Cutadapt",
+            "outputs": [
+                {
+                    "name": "report",
+                    "type": "txt"
+                },
+                {
+                    "name": "output",
+                    "type": "input"
+                },
+                {
+                    "name": "paired_output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 771.921875,
+                "top": 522
+            },
+            "post_job_actions": {
+                "HideDatasetActioninfo_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "info_file"
+                },
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionpaired_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "paired_output"
+                },
+                "HideDatasetActionreport": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "report"
+                },
+                "HideDatasetActionrest_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "rest_output"
+                },
+                "HideDatasetActiontoo_long_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "too_long_output"
+                },
+                "HideDatasetActiontoo_short_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "too_short_output"
+                },
+                "HideDatasetActionuntrimmed_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "untrimmed_output"
+                },
+                "HideDatasetActionuntrimmed_paired_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "untrimmed_paired_output"
+                },
+                "HideDatasetActionwild_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "wild_output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/1.6",
+            "tool_shed_repository": {
+                "changeset_revision": "01d94df2e32a",
+                "name": "cutadapt",
+                "owner": "lparsons",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"adapters\": [{\"__index__\": 0, \"adapter_source\": {\"adapter_source_list\": \"user\", \"__current_case__\": 0, \"adapter_name\": \"3P_ADAPTER\", \"adapter\": \"AGATCGGAAGAGCGGTTCAGCAGGAATGCCGAGACCGATCTCGTATGCCGTCTTCTGCTTG\"}}], \"anywhere_adapters\": [], \"count\": \"1\", \"error_rate\": \"0.1\", \"front_adapters\": [], \"input\": {\"__class__\": \"RuntimeValue\"}, \"match_read_wildcards\": \"false\", \"no_indels\": \"false\", \"output_filtering_options\": {\"output_filtering\": \"filter\", \"__current_case__\": 1, \"discard\": \"false\", \"discard_untrimmed\": \"false\", \"min\": \"10\", \"max\": \"0\", \"no_trim\": \"false\", \"mask_adapter\": \"false\"}, \"output_params\": {\"output_type\": \"default\", \"__current_case__\": 0}, \"overlap\": \"5\", \"paired_end\": {\"paired_end_boolean\": \"true\", \"__current_case__\": 0, \"input2\": {\"__class__\": \"RuntimeValue\"}}, \"read_modification_params\": {\"read_modification\": \"none\", \"__current_case__\": 0}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.6",
+            "type": "tool",
+            "uuid": "e6b57ff2-8a2c-4762-87f8-0991fbcd4e3a",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/1.6",
+            "errors": null,
+            "id": 4,
+            "input_connections": {
+                "input": {
+                    "id": 3,
+                    "output_name": "paired_output"
+                },
+                "paired_end|input2": {
+                    "id": 3,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Cutadapt",
+                    "name": "input"
+                },
+                {
+                    "description": "runtime parameter for tool Cutadapt",
+                    "name": "paired_end"
+                }
+            ],
+            "label": null,
+            "name": "Cutadapt",
+            "outputs": [
+                {
+                    "name": "report",
+                    "type": "txt"
+                },
+                {
+                    "name": "output",
+                    "type": "input"
+                },
+                {
+                    "name": "paired_output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1028.9375,
+                "top": 520.28125
+            },
+            "post_job_actions": {
+                "HideDatasetActioninfo_file": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "info_file"
+                },
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionpaired_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "paired_output"
+                },
+                "HideDatasetActionreport": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "report"
+                },
+                "HideDatasetActionrest_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "rest_output"
+                },
+                "HideDatasetActiontoo_long_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "too_long_output"
+                },
+                "HideDatasetActiontoo_short_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "too_short_output"
+                },
+                "HideDatasetActionuntrimmed_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "untrimmed_output"
+                },
+                "HideDatasetActionuntrimmed_paired_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "untrimmed_paired_output"
+                },
+                "HideDatasetActionwild_output": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "wild_output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/lparsons/cutadapt/cutadapt/1.6",
+            "tool_shed_repository": {
+                "changeset_revision": "01d94df2e32a",
+                "name": "cutadapt",
+                "owner": "lparsons",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"adapters\": [{\"__index__\": 0, \"adapter_source\": {\"adapter_source_list\": \"user\", \"__current_case__\": 0, \"adapter_name\": \"3P_ADAPTER\", \"adapter\": \"AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT\"}}], \"anywhere_adapters\": [], \"count\": \"1\", \"error_rate\": \"0.1\", \"front_adapters\": [], \"input\": {\"__class__\": \"RuntimeValue\"}, \"match_read_wildcards\": \"false\", \"no_indels\": \"false\", \"output_filtering_options\": {\"output_filtering\": \"filter\", \"__current_case__\": 1, \"discard\": \"false\", \"discard_untrimmed\": \"false\", \"min\": \"10\", \"max\": \"0\", \"no_trim\": \"false\", \"mask_adapter\": \"false\"}, \"output_params\": {\"output_type\": \"default\", \"__current_case__\": 0}, \"overlap\": \"5\", \"paired_end\": {\"paired_end_boolean\": \"true\", \"__current_case__\": 0, \"input2\": {\"__class__\": \"RuntimeValue\"}}, \"read_modification_params\": {\"read_modification\": \"modify\", \"__current_case__\": 1, \"cut\": \"-9\", \"quality_cutoff\": \"0\", \"prefix\": \"\", \"suffix\": \"\", \"strip_suffix\": \"\", \"length_tag\": \"\", \"zero_cap\": \"false\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.6",
+            "type": "tool",
+            "uuid": "ded4b995-58d6-4d5c-8bb2-df4cdbca466f",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.6",
+            "errors": null,
+            "id": 5,
+            "input_connections": {
+                "results_0|software_cond|output_0|input": {
+                    "id": 2,
+                    "output_name": "forward"
+                },
+                "results_0|software_cond|output_1|input": {
+                    "id": 2,
+                    "output_name": "reverse"
+                },
+                "results_1|software_cond|output_0|input": {
+                    "id": 4,
+                    "output_name": "paired_output"
+                },
+                "results_1|software_cond|output_1|input": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "MultiQC",
+            "outputs": [
+                {
+                    "name": "stats",
+                    "type": "input"
+                },
+                {
+                    "name": "html_report",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 1430.5,
+                "top": 242
+            },
+            "post_job_actions": {
+                "HideDatasetActionlog": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "log"
+                },
+                "HideDatasetActionstats": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "stats"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/multiqc/multiqc/1.6",
+            "tool_shed_repository": {
+                "changeset_revision": "1c2db0054039",
+                "name": "multiqc",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"comment\": \"\", \"results\": [{\"__index__\": 0, \"software_cond\": {\"software\": \"fastqc\", \"__current_case__\": 8, \"output\": [{\"__index__\": 0, \"type\": \"data\", \"input\": {\"__class__\": \"RuntimeValue\"}}, {\"__index__\": 1, \"type\": \"data\", \"input\": {\"__class__\": \"RuntimeValue\"}}]}}, {\"__index__\": 1, \"software_cond\": {\"software\": \"fastqc\", \"__current_case__\": 8, \"output\": [{\"__index__\": 0, \"type\": \"data\", \"input\": {\"__class__\": \"RuntimeValue\"}}, {\"__index__\": 1, \"type\": \"data\", \"input\": {\"__class__\": \"RuntimeValue\"}}]}}], \"saveLog\": \"false\", \"title\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.6",
+            "type": "tool",
+            "uuid": "cbe16fb4-4d80-43bb-a065-684b9da6e755",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "html_report",
+                    "uuid": "5b5367dc-3a6e-4e25-991a-cba83a93d012"
+                }
+            ]
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/umi_tools_extract/umi_tools_extract/0.4.4.0",
+            "errors": null,
+            "id": 6,
+            "input_connections": {
+                "input_type|input_read1": {
+                    "id": 4,
+                    "output_name": "paired_output"
+                },
+                "input_type|input_read2": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool UMI-tools extract",
+                    "name": "input_type"
+                },
+                {
+                    "description": "runtime parameter for tool UMI-tools extract",
+                    "name": "input_type"
+                }
+            ],
+            "label": null,
+            "name": "UMI-tools extract",
+            "outputs": [
+                {
+                    "name": "out1",
+                    "type": "input"
+                },
+                {
+                    "name": "out2",
+                    "type": "input"
+                },
+                {
+                    "name": "out_log",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 1428.9375,
+                "top": 571.28125
+            },
+            "post_job_actions": {
+                "HideDatasetActionout": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out"
+                },
+                "HideDatasetActionout1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out1"
+                },
+                "HideDatasetActionout2": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out2"
+                },
+                "HideDatasetActionout_log": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "out_log"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/umi_tools_extract/umi_tools_extract/0.4.4.0",
+            "tool_shed_repository": {
+                "changeset_revision": "418b961e0576",
+                "name": "umi_tools_extract",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"bc_pattern\": \"NNNXXXXNN\", \"input_type\": {\"type\": \"paired\", \"__current_case__\": 1, \"input_read1\": {\"__class__\": \"RuntimeValue\"}, \"input_read2\": {\"__class__\": \"RuntimeValue\"}, \"barcode\": {\"split\": \"0\", \"__current_case__\": 0}}, \"prime3\": \"true\", \"print_log\": \"true\", \"quality\": {\"quality_selector\": \"false\", \"__current_case__\": 0}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.4.4.0",
+            "type": "tool",
+            "uuid": "4b357aa6-1c9a-40ec-9b7d-25c261fadbd7",
+            "workflow_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/gbcs-embl-heidelberg/je_demultiplex/je_demultiplex/1.2.1",
+            "errors": null,
+            "id": 7,
+            "input_connections": {
+                "barcodes|BARCODE_FILE": {
+                    "id": 1,
+                    "output_name": "output"
+                },
+                "library|input_1": {
+                    "id": 6,
+                    "output_name": "out1"
+                },
+                "library|input_2": {
+                    "id": 6,
+                    "output_name": "out2"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Je-Demultiplex",
+                    "name": "barcodes"
+                },
+                {
+                    "description": "runtime parameter for tool Je-Demultiplex",
+                    "name": "library"
+                },
+                {
+                    "description": "runtime parameter for tool Je-Demultiplex",
+                    "name": "library"
+                }
+            ],
+            "label": null,
+            "name": "Je-Demultiplex",
+            "outputs": [
+                {
+                    "name": "COLLECTION_1",
+                    "type": "input"
+                },
+                {
+                    "name": "COLLECTION_2",
+                    "type": "input"
+                },
+                {
+                    "name": "METRICS_FILE_NAME",
+                    "type": "tabular"
+                },
+                {
+                    "name": "BARCODE_DIAG_FILE",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "left": 1755.765625,
+                "top": 590.546875
+            },
+            "post_job_actions": {
+                "HideDatasetActionBARCODE_DIAG_FILE": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "BARCODE_DIAG_FILE"
+                },
+                "HideDatasetActionCOLLECTION_1": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "COLLECTION_1"
+                },
+                "HideDatasetActionCOLLECTION_2": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "COLLECTION_2"
+                },
+                "HideDatasetActionDEMULTIPLEX_RESULTS": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "DEMULTIPLEX_RESULTS"
+                },
+                "HideDatasetActionMETRICS_FILE_NAME": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "METRICS_FILE_NAME"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/gbcs-embl-heidelberg/je_demultiplex/je_demultiplex/1.2.1",
+            "tool_shed_repository": {
+                "changeset_revision": "bd3cdf128bcb",
+                "name": "je_demultiplex",
+                "owner": "gbcs-embl-heidelberg",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"ADD\": \"false\", \"CLIP_BARCODE\": \"true\", \"COLLECT_OUTPUTS\": \"true\", \"DIAG\": \"true\", \"GZ\": \"false\", \"KEEP_UNASSIGNED_READ\": \"false\", \"LEN\": \"4\", \"MIN_BASE_QUALITY\": \"10\", \"MM\": \"1\", \"MMD\": \"1\", \"QUALITY_FORMAT\": \"Standard\", \"RCHAR\": \":\", \"STATS_ONLY\": \"false\", \"XT\": \"0\", \"ZT\": \"0\", \"barcodes\": {\"barcode_list_type_con\": \"file\", \"__current_case__\": 0, \"BARCODE_FILE\": {\"__class__\": \"RuntimeValue\"}}, \"library\": {\"type\": \"paired\", \"__current_case__\": 1, \"input_1\": {\"__class__\": \"RuntimeValue\"}, \"input_2\": {\"__class__\": \"RuntimeValue\"}, \"BPOS_CONDITIONAL\": {\"BPOS\": \"READ_1\", \"__current_case__\": 0}, \"SAME_HEADERS\": \"false\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.2.1",
+            "type": "tool",
+            "uuid": "964361cc-0a91-4e27-971d-8e0c9ad1400a",
+            "workflow_outputs": []
+        }
+    },
+    "tags": [
+        "CLIP-Explorer"
+    ],
+    "uuid": "e098e21f-7a69-4dfa-8e81-42274ef70b56",
+    "version": 8
+}

@@ -1,0 +1,1016 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "",
+    "format-version": "0.1",
+    "name": "RobustPeak_Analysis",
+    "steps": {
+        "0": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Genome Chromosome Sizes"
+                }
+            ],
+            "label": "Genome Chromosome Sizes",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 284,
+                "top": 1001.890625
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "c442ca47-cd28-4dfb-a8ec-5510a80a5cc1",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "65995ee9-aa4b-441e-ad64-9500688d990a"
+                }
+            ]
+        },
+        "1": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "First Peak Set"
+                }
+            ],
+            "label": "First Peak Set",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 299.34375,
+                "top": 1109.25
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "be0ae7b6-7cd5-48e3-bd38-464f1c7dd19a",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "6145b31a-020a-4fa3-bc67-4ccabc8fa719"
+                }
+            ]
+        },
+        "2": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 2,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Second Peak Set"
+                }
+            ],
+            "label": "Second Peak Set",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 291.34375,
+                "top": 1224.25
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "25f2973a-cdc4-472d-97c9-38111af1c63c",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "163558d3-07c3-46a5-84dd-b488b2e38bff"
+                }
+            ]
+        },
+        "3": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 3,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Annotation Reference File for RCAS"
+                }
+            ],
+            "label": "Annotation Reference File for RCAS",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 1353.328125,
+                "top": 1029.9375
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "dc3847f3-4f26-4730-9b44-5988affa35cc",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "325d2cba-b0c9-4767-aeb7-ee676b82f57f"
+                }
+            ]
+        },
+        "4": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 4,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Genome Fasta"
+                }
+            ],
+            "label": "Genome Fasta",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "left": 1227.9375,
+                "top": 1373.921875
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "d8fdfa8e-5b23-4601-a5b2-1a68a7c44f64",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "0b9cc112-0142-44fa-aa65-450a9830646d"
+                }
+            ]
+        },
+        "5": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_slopbed/2.27.0.0",
+            "errors": null,
+            "id": 5,
+            "input_connections": {
+                "genome_file_opts|genome": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "inputA": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "SlopBed",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "bed"
+                }
+            ],
+            "position": {
+                "left": 768,
+                "top": 1047.890625
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActionoutput": {
+                    "action_arguments": {
+                        "newtype": "bed"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_slopbed/2.27.0.0",
+            "tool_shed_repository": {
+                "changeset_revision": "db1841942d2b",
+                "name": "bedtools",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"addition\": {\"addition_select\": \"b\", \"__current_case__\": 0, \"b\": \"20\"}, \"genome_file_opts\": {\"genome_file_opts_selector\": \"hist\", \"__current_case__\": 1, \"genome\": {\"__class__\": \"ConnectedValue\"}}, \"header\": \"false\", \"inputA\": {\"__class__\": \"ConnectedValue\"}, \"pct\": \"false\", \"strand\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.27.0.0",
+            "type": "tool",
+            "uuid": "eb6a3a7d-06dc-40a4-bc17-f49e24bf4a36",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_slopbed/2.27.0.0",
+            "errors": null,
+            "id": 6,
+            "input_connections": {
+                "genome_file_opts|genome": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "inputA": {
+                    "id": 2,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "SlopBed",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "bed"
+                }
+            ],
+            "position": {
+                "left": 770,
+                "top": 1190.890625
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActionoutput": {
+                    "action_arguments": {
+                        "newtype": "bed"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_slopbed/2.27.0.0",
+            "tool_shed_repository": {
+                "changeset_revision": "db1841942d2b",
+                "name": "bedtools",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"addition\": {\"addition_select\": \"b\", \"__current_case__\": 0, \"b\": \"20\"}, \"genome_file_opts\": {\"genome_file_opts_selector\": \"hist\", \"__current_case__\": 1, \"genome\": {\"__class__\": \"ConnectedValue\"}}, \"header\": \"false\", \"inputA\": {\"__class__\": \"ConnectedValue\"}, \"pct\": \"false\", \"strand\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.27.0.0",
+            "type": "tool",
+            "uuid": "2af79778-1388-4cee-a1eb-acd41234f082",
+            "workflow_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "content_id": "Filter1",
+            "errors": null,
+            "id": 7,
+            "input_connections": {
+                "input": {
+                    "id": 3,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Filter",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "Filter",
+            "outputs": [
+                {
+                    "name": "out_file1",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1065.5,
+                "top": 1536.5
+            },
+            "post_job_actions": {},
+            "tool_id": "Filter1",
+            "tool_state": "{\"cond\": \"c1=='gene'\", \"header_lines\": \"0\", \"input\": {\"__class__\": \"RuntimeValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.1.0",
+            "type": "tool",
+            "uuid": "7e6b3586-eeab-436c-89b2-1599f146eaef",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "out_file1",
+                    "uuid": "f46fb6fd-eb27-44a8-aa17-cc45d405bda1"
+                }
+            ]
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_intersectbed/2.27.0.2",
+            "errors": null,
+            "id": 8,
+            "input_connections": {
+                "inputA": {
+                    "id": 5,
+                    "output_name": "output"
+                },
+                "reduce_or_iterate|inputB": {
+                    "id": 6,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Intersect intervals",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1093.84375,
+                "top": 1155
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_intersectbed/2.27.0.2",
+            "tool_shed_repository": {
+                "changeset_revision": "db1841942d2b",
+                "name": "bedtools",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"count\": \"false\", \"fraction\": \"\", \"header\": \"false\", \"inputA\": {\"__class__\": \"ConnectedValue\"}, \"invert\": \"false\", \"once\": \"false\", \"overlap_mode\": null, \"reciprocal\": \"false\", \"reduce_or_iterate\": {\"reduce_or_iterate_selector\": \"iterate\", \"__current_case__\": 0, \"inputB\": {\"__class__\": \"ConnectedValue\"}}, \"split\": \"false\", \"strand\": \"-s\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.27.0.2",
+            "type": "tool",
+            "uuid": "6d1861d5-11f4-4c51-a0ab-9dba66e8a52c",
+            "workflow_outputs": []
+        },
+        "9": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_awk_tool/1.1.1",
+            "errors": null,
+            "id": 9,
+            "input_connections": {
+                "infile": {
+                    "id": 8,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Text reformatting",
+            "outputs": [
+                {
+                    "name": "outfile",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1340.84375,
+                "top": 1153
+            },
+            "post_job_actions": {
+                "HideDatasetActionoutfile": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "outfile"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_awk_tool/1.1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "9ff72e942410",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"code\": \"$3-$2>=5{print $0}\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.1.1",
+            "type": "tool",
+            "uuid": "2947fd25-5e15-4c07-a684-d9a8e7e5d1df",
+            "workflow_outputs": []
+        },
+        "10": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_awk_tool/1.1.1",
+            "errors": null,
+            "id": 10,
+            "input_connections": {
+                "infile": {
+                    "id": 9,
+                    "output_name": "outfile"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Text reformatting",
+            "outputs": [
+                {
+                    "name": "outfile",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1636.75,
+                "top": 841.53125
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActionoutfile": {
+                    "action_arguments": {
+                        "newtype": "bed"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "outfile"
+                },
+                "HideDatasetActionoutfile": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "outfile"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/bgruening/text_processing/tp_awk_tool/1.1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "9ff72e942410",
+                "name": "text_processing",
+                "owner": "bgruening",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"code\": \"{print $0}\", \"infile\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.1.1",
+            "type": "tool",
+            "uuid": "6810aae3-ed92-49a9-b030-794f0afdb194",
+            "workflow_outputs": []
+        },
+        "11": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_subtractbed/2.29.0",
+            "errors": null,
+            "id": 11,
+            "input_connections": {
+                "inputA": {
+                    "id": 7,
+                    "output_name": "out_file1"
+                },
+                "inputB": {
+                    "id": 9,
+                    "output_name": "outfile"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool bedtools SubtractBed",
+                    "name": "inputA"
+                },
+                {
+                    "description": "runtime parameter for tool bedtools SubtractBed",
+                    "name": "inputB"
+                }
+            ],
+            "label": null,
+            "name": "bedtools SubtractBed",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1331.5,
+                "top": 1544.5
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/bedtools/bedtools_subtractbed/2.29.0",
+            "tool_shed_repository": {
+                "changeset_revision": "b28e0cfa7ba1",
+                "name": "bedtools",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"inputA\": {\"__class__\": \"RuntimeValue\"}, \"inputB\": {\"__class__\": \"RuntimeValue\"}, \"overlap\": \"\", \"removeIfOverlap\": \"\", \"strand\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "2.29.0",
+            "type": "tool",
+            "uuid": "5b8e7b69-9ff7-4955-9273-67486fe8dc07",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "fe157915-3d8d-4439-9612-d81c6633ede8"
+                }
+            ]
+        },
+        "12": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/extract_genomic_dna/Extract genomic DNA 1/3.0.3",
+            "errors": null,
+            "id": 12,
+            "input_connections": {
+                "input": {
+                    "id": 9,
+                    "output_name": "outfile"
+                },
+                "reference_genome_cond|reference_genome": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Extract Genomic DNA",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1730.828125,
+                "top": 1350.484375
+            },
+            "post_job_actions": {
+                "ChangeDatatypeActionoutput": {
+                    "action_arguments": {
+                        "newtype": "fasta"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "output"
+                },
+                "HideDatasetActionoutput": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "output"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/extract_genomic_dna/Extract genomic DNA 1/3.0.3",
+            "tool_shed_repository": {
+                "changeset_revision": "e1f5bdd8279c",
+                "name": "extract_genomic_dna",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"input\": {\"__class__\": \"ConnectedValue\"}, \"interpret_features\": \"no\", \"output_format_cond\": {\"output_format\": \"fasta\", \"__current_case__\": 0, \"fasta_header_type_cond\": {\"fasta_header_type\": \"bedtools_getfasta_default\", \"__current_case__\": 0}}, \"reference_genome_cond\": {\"reference_genome_source\": \"history\", \"__current_case__\": 1, \"reference_genome\": {\"__class__\": \"ConnectedValue\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "3.0.3",
+            "type": "tool",
+            "uuid": "89ddfc85-ff0e-4536-99b9-e2ad5444932d",
+            "workflow_outputs": []
+        },
+        "13": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/rnateam/rcas/rcas/1.1.1",
+            "errors": null,
+            "id": 13,
+            "input_connections": {
+                "input_BED": {
+                    "id": 10,
+                    "output_name": "outfile"
+                },
+                "input_GTF": {
+                    "id": 3,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "RNA Centric Annotation System",
+            "outputs": [
+                {
+                    "name": "report",
+                    "type": "html"
+                },
+                {
+                    "name": "summarizeQueryRegions",
+                    "type": "tsv"
+                },
+                {
+                    "name": "query_gene_types",
+                    "type": "tsv"
+                },
+                {
+                    "name": "transcriptBoundaryCoverage.fiveprime",
+                    "type": "tsv"
+                },
+                {
+                    "name": "transcriptBoundaryCoverage.threeprime",
+                    "type": "tsv"
+                },
+                {
+                    "name": "exonIntronBoundaryCoverage.fiveprime",
+                    "type": "tsv"
+                },
+                {
+                    "name": "exonIntronBoundaryCoverage.threeprime",
+                    "type": "tsv"
+                },
+                {
+                    "name": "coverageprofilelist",
+                    "type": "tsv"
+                },
+                {
+                    "name": "getTargetedGenesTable",
+                    "type": "tsv"
+                },
+                {
+                    "name": "goCC",
+                    "type": "tsv"
+                },
+                {
+                    "name": "goBP",
+                    "type": "tsv"
+                },
+                {
+                    "name": "goMF",
+                    "type": "tsv"
+                }
+            ],
+            "position": {
+                "left": 2045.34375,
+                "top": 271
+            },
+            "post_job_actions": {
+                "HideDatasetActioncoverageprofilelist": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "coverageprofilelist"
+                },
+                "HideDatasetActionexonIntronBoundaryCoverage.fiveprime": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "exonIntronBoundaryCoverage.fiveprime"
+                },
+                "HideDatasetActionexonIntronBoundaryCoverage.threeprime": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "exonIntronBoundaryCoverage.threeprime"
+                },
+                "HideDatasetActiongetTargetedGenesTable": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "getTargetedGenesTable"
+                },
+                "HideDatasetActiongoBP": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "goBP"
+                },
+                "HideDatasetActiongoCC": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "goCC"
+                },
+                "HideDatasetActiongoMF": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "goMF"
+                },
+                "HideDatasetActionquery_gene_types": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "query_gene_types"
+                },
+                "HideDatasetActionsummarizeQueryRegions": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "summarizeQueryRegions"
+                },
+                "HideDatasetActiontranscriptBoundaryCoverage.fiveprime": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "transcriptBoundaryCoverage.fiveprime"
+                },
+                "HideDatasetActiontranscriptBoundaryCoverage.threeprime": {
+                    "action_arguments": {},
+                    "action_type": "HideDatasetAction",
+                    "output_name": "transcriptBoundaryCoverage.threeprime"
+                }
+            },
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/rnateam/rcas/rcas/1.1.1",
+            "tool_shed_repository": {
+                "changeset_revision": "aa9579837a2e",
+                "name": "rcas",
+                "owner": "rnateam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"choice\": {\"run_PATHrich\": \"FALSE\", \"__current_case__\": 1}, \"downsampling\": \"0\", \"genomeVersion\": \"hg19\", \"input_BED\": {\"__class__\": \"ConnectedValue\"}, \"input_GTF\": {\"__class__\": \"ConnectedValue\"}, \"run_GOrich\": \"true\", \"run_anot\": \"true\", \"run_motif\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.1.1",
+            "type": "tool",
+            "uuid": "80898955-d382-40a3-9e89-6475b85e9c93",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "report",
+                    "uuid": "64b7a585-4610-4e15-9539-9b3fdbc1714a"
+                }
+            ]
+        },
+        "14": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/extract_genomic_dna/Extract genomic DNA 1/3.0.3+galaxy2",
+            "errors": null,
+            "id": 14,
+            "input_connections": {
+                "input": {
+                    "id": 11,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Extract Genomic DNA",
+                    "name": "input"
+                }
+            ],
+            "label": null,
+            "name": "Extract Genomic DNA",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "input"
+                }
+            ],
+            "position": {
+                "left": 1708.5,
+                "top": 1545.5
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/extract_genomic_dna/Extract genomic DNA 1/3.0.3+galaxy2",
+            "tool_shed_repository": {
+                "changeset_revision": "5cc8e93ee98f",
+                "name": "extract_genomic_dna",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"input\": {\"__class__\": \"RuntimeValue\"}, \"interpret_features\": \"yes\", \"output_format_cond\": {\"output_format\": \"fasta\", \"__current_case__\": 0, \"fasta_header_type_cond\": {\"fasta_header_type\": \"bedtools_getfasta_default\", \"__current_case__\": 0}}, \"reference_genome_cond\": {\"reference_genome_source\": \"cached\", \"__current_case__\": 0, \"reference_genome\": \"hg38\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "3.0.3+galaxy2",
+            "type": "tool",
+            "uuid": "b3438c3c-88fd-4f95-aa6d-abe31dfdea85",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "1a11f45b-658e-4ef2-ae77-ea4ae25432c9"
+                }
+            ]
+        },
+        "15": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/meme_chip/meme_chip/4.11.2",
+            "errors": null,
+            "id": 15,
+            "input_connections": {
+                "input": {
+                    "id": 12,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool MEME-ChIP",
+                    "name": "control"
+                }
+            ],
+            "label": null,
+            "name": "MEME-ChIP",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "html"
+                }
+            ],
+            "position": {
+                "left": 2078.234375,
+                "top": 1376.984375
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/meme_chip/meme_chip/4.11.2",
+            "tool_shed_repository": {
+                "changeset_revision": "6095db402811",
+                "name": "meme_chip",
+                "owner": "iuc",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"control\": {\"__class__\": \"RuntimeValue\"}, \"input\": {\"__class__\": \"ConnectedValue\"}, \"non_commercial_use\": \"true\", \"options_type_cond\": {\"options_type\": \"advanced\", \"__current_case__\": 1, \"background_model_order\": \"1\", \"nmeme\": \"1000\", \"subsampling_cond\": {\"subsampling\": \"yes\", \"__current_case__\": 0, \"seed\": \"123\"}, \"ccut\": \"0\", \"group_threash\": \"0.05\", \"group_weak\": \"0.0\", \"filter_thresh\": \"0.05\", \"search_given_strand\": \"true\", \"old_clustering\": \"false\", \"meme_mod\": \"zoops\", \"meme_minw\": \"5\", \"meme_maxw\": \"20\", \"meme_nmotifs\": \"20\", \"meme_minsites\": \"0\", \"meme_maxsites\": \"0\", \"meme_pal\": \"false\", \"dreme_e\": \"0.05\", \"dreme_m\": \"20\"}, \"sequence_alphabet\": \"-rna\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "4.11.2",
+            "type": "tool",
+            "uuid": "93e31f28-91ff-41af-874b-e3d12db2c711",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "output",
+                    "uuid": "62c30af6-c32d-4040-9f3d-c7f5b8811960"
+                }
+            ]
+        },
+        "16": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/rnateam/graphprot_predict_profile/graphprot_predict_profile/1.1.7+galaxy1",
+            "errors": null,
+            "id": 16,
+            "input_connections": {
+                "action_type|neg_fasta_file": {
+                    "id": 14,
+                    "output_name": "output"
+                },
+                "action_type|pos_fasta_file": {
+                    "id": 12,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GraphProt",
+                    "name": "action_type"
+                },
+                {
+                    "description": "runtime parameter for tool GraphProt",
+                    "name": "action_type"
+                }
+            ],
+            "label": null,
+            "name": "GraphProt",
+            "outputs": [
+                {
+                    "name": "model_out_file",
+                    "type": "txt"
+                },
+                {
+                    "name": "params_out_file",
+                    "type": "txt"
+                },
+                {
+                    "name": "cv_results_out_file",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "left": 2074.5,
+                "top": 1552.5
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/rnateam/graphprot_predict_profile/graphprot_predict_profile/1.1.7+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "7bbb7bf6304f",
+                "name": "graphprot_predict_profile",
+                "owner": "rnateam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"action_type\": {\"action_type_selector\": \"train\", \"__current_case__\": 0, \"pos_fasta_file\": {\"__class__\": \"RuntimeValue\"}, \"neg_fasta_file\": {\"__class__\": \"RuntimeValue\"}, \"train_str_model\": \"false\", \"hpo_options\": {\"hpo_mode_type\": {\"hpo_mode_type_selector\": \"take\", \"__current_case__\": 0, \"opt_set_size\": \"500\"}}, \"training_options\": {\"disable_cv\": \"false\", \"disable_motifs\": \"true\", \"min_train\": \"750\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.1.7+galaxy1",
+            "type": "tool",
+            "uuid": "4ba708a7-569e-4dba-902a-7729c49be484",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "model_out_file",
+                    "uuid": "d62300ab-9e74-427e-b592-4bad0b8b8a54"
+                },
+                {
+                    "label": null,
+                    "output_name": "params_out_file",
+                    "uuid": "a6fd9f8e-6626-47d0-95f0-f4f951097fa0"
+                },
+                {
+                    "label": null,
+                    "output_name": "cv_results_out_file",
+                    "uuid": "08339634-1757-4d03-8fb3-5c536c73ce20"
+                },
+                {
+                    "label": null,
+                    "output_name": "seq_motif_png_out_file",
+                    "uuid": "a8ee739b-78fe-4114-851d-9df68b0b6101"
+                }
+            ]
+        },
+        "17": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/rnateam/graphprot_predict_profile/graphprot_predict_profile/1.1.7+galaxy1",
+            "errors": null,
+            "id": 17,
+            "input_connections": {
+                "action_type|genomic_sites_bed_file": {
+                    "id": 9,
+                    "output_name": "outfile"
+                },
+                "action_type|input_fasta_file": {
+                    "id": 12,
+                    "output_name": "output"
+                },
+                "action_type|model_file": {
+                    "id": 16,
+                    "output_name": "model_out_file"
+                },
+                "action_type|params_file": {
+                    "id": 16,
+                    "output_name": "params_out_file"
+                }
+            },
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool GraphProt",
+                    "name": "action_type"
+                },
+                {
+                    "description": "runtime parameter for tool GraphProt",
+                    "name": "action_type"
+                },
+                {
+                    "description": "runtime parameter for tool GraphProt",
+                    "name": "action_type"
+                },
+                {
+                    "description": "runtime parameter for tool GraphProt",
+                    "name": "action_type"
+                }
+            ],
+            "label": null,
+            "name": "GraphProt",
+            "outputs": [
+                {
+                    "name": "avg_profile_out_file",
+                    "type": "txt"
+                },
+                {
+                    "name": "peaks_out_file",
+                    "type": "bed"
+                },
+                {
+                    "name": "p50_peaks_out_file",
+                    "type": "bed"
+                },
+                {
+                    "name": "genomic_peaks_out_file",
+                    "type": "bed"
+                },
+                {
+                    "name": "genomic_p50_peaks_out_file",
+                    "type": "bed"
+                }
+            ],
+            "position": {
+                "left": 2388.5,
+                "top": 1550.5
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/rnateam/graphprot_predict_profile/graphprot_predict_profile/1.1.7+galaxy1",
+            "tool_shed_repository": {
+                "changeset_revision": "7bbb7bf6304f",
+                "name": "graphprot_predict_profile",
+                "owner": "rnateam",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"action_type\": {\"action_type_selector\": \"predict\", \"__current_case__\": 1, \"input_fasta_file\": {\"__class__\": \"RuntimeValue\"}, \"model_file\": {\"__class__\": \"RuntimeValue\"}, \"params_file\": {\"__class__\": \"RuntimeValue\"}, \"genomic_sites_bed_file\": {\"__class__\": \"RuntimeValue\"}, \"prediction_options\": {\"score_thr\": \"0.0\", \"ap_extlr\": \"5\", \"max_merge_dist\": \"0\", \"ws_pred_out\": \"false\", \"conf_out\": \"true\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "1.1.7+galaxy1",
+            "type": "tool",
+            "uuid": "6f730f4b-5a14-497b-912a-35921ca9dec2",
+            "workflow_outputs": [
+                {
+                    "label": null,
+                    "output_name": "avg_profile_out_file",
+                    "uuid": "f21d0d62-a12c-4eb2-ae1a-bc55d1ae9867"
+                },
+                {
+                    "label": null,
+                    "output_name": "genomic_peaks_out_file",
+                    "uuid": "98efdbe2-2c2b-462f-ac6e-e508743d1be7"
+                },
+                {
+                    "label": null,
+                    "output_name": "peaks_out_file",
+                    "uuid": "212bde48-8e44-4542-a519-c9fcd4bf5b57"
+                },
+                {
+                    "label": null,
+                    "output_name": "genomic_p50_peaks_out_file",
+                    "uuid": "d683e493-0c35-45a7-a2a6-682fd0122b3d"
+                },
+                {
+                    "label": null,
+                    "output_name": "p50_peaks_out_file",
+                    "uuid": "11a7362f-73a0-40f6-bc5b-b168e30aab7c"
+                }
+            ]
+        }
+    },
+    "tags": [
+        "CLIP-Explorer"
+    ],
+    "uuid": "e497e411-8176-4b37-8ba8-64a88a454319",
+    "version": 5
+}
